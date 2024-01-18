@@ -1,16 +1,26 @@
-import { Sequelize } from 'sequelize'
-import db from "../config/Database.js"
+import { Sequelize } from 'sequelize';
+import db from '../config/Database.js';
 
-const {DataTypes} = Sequelize
+const { DataTypes } = Sequelize;
+
 const Categories = db.define('categories', {
-    name: DataTypes.STRING
-},{
+    name: DataTypes.STRING,
+    created_at: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+    updated_at: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        onUpdate: Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+}, {
     freezeTableName: true,
-    timestamps: true
-})
+    timestamps: false, 
+});
 
 export default Categories;
 
-(async ()=>{
-    await db.sync()
-})()
+(async () => {
+    await db.sync();
+})();
