@@ -18,6 +18,7 @@ export const createBook = async (req, res) => {
         if (release_year < 1980 || release_year > 2021) {
             return res.status(400).json({ error: "Invalid release year. Must be between 1980 and 2021." });
         }
+        const thickness = total_page <= 100 ? "tipis" : (total_page <= 200 ? "sedang" : "tebal");
         const newBook = await Books.create({
             title,
             description,
@@ -25,6 +26,7 @@ export const createBook = async (req, res) => {
             release_year,
             price,
             total_page,
+            thickness,
             category_id,
         });
         res.status(201).json({ msg: "Book Added", data: newBook });
