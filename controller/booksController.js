@@ -28,3 +28,53 @@ export const createBook = async (req, res) => {
     }
 };
 
+export const updateBook = async (req, res) => {
+    try {
+        const { title, description, image, release_year, price, total_page, category_id } = req.body;
+        await Books.update(
+            {
+                title,
+                description,
+                image_url: image,
+                release_year,
+                price,
+                total_page,
+                category_id,
+            },
+            {
+                where: {
+                    id: req.params.id,
+                },
+            }
+        );
+        res.status(200).json({ msg: "Book Updated" });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
+export const deleteBook = async (req, res) => {
+    try {
+        await Books.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+        res.status(200).json({ msg: "Book Deleted" });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
+export const getBookById = async (req, res) => {
+    try {
+        const response = await Books.findOne({
+            where: {
+                id: req.params.id,
+            },
+        });
+        res.status(200).json(response);
+    } catch (error) {
+        console.log(error.message);
+    }
+};

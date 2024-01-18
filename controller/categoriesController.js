@@ -13,7 +13,7 @@ export const getCategories = async (req, res) => {
 
 
 
-export const createCategories = async (req, res) => {
+export const createCategorie = async (req, res) => {
     try {
         await Categories.create(req.body)
         res.status(201).json({msg: "Categorie Added"})
@@ -23,7 +23,7 @@ export const createCategories = async (req, res) => {
     }
 }
 
-export const updateCategories = async (req, res) => {
+export const updateCategorie = async (req, res) => {
     try {
         await Categories.update(req.body, {
             where:{
@@ -36,7 +36,7 @@ export const updateCategories = async (req, res) => {
     }
 }
 
-export const deleteCategories = async (req, res) => {
+export const deleteCategorie = async (req, res) => {
     try {
         await Categories.destroy({
             where:{
@@ -50,7 +50,7 @@ export const deleteCategories = async (req, res) => {
     }
 }
 
-export const getCategoriesById = async (req, res) => {
+export const getCategorieById = async (req, res) => {
     try {
         const response = await Categories.findOne({
             where:{
