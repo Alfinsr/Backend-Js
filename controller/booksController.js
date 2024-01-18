@@ -13,6 +13,11 @@ export const getBooks = async (req, res) => {
 export const createBook = async (req, res) => {
     try {
         const { title, description, image, release_year, price, total_page, category_id } = req.body;
+
+        //ini untuk validasi inputan tahun sesuai dengan ketentuan perintah
+        if (release_year < 1980 || release_year > 2021) {
+            return res.status(400).json({ error: "Invalid release year. Must be between 1980 and 2021." });
+        }
         const newBook = await Books.create({
             title,
             description,
