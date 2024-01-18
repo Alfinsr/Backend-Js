@@ -9,3 +9,22 @@ export const getBooks = async (req, res) => {
     }
 };
 
+
+export const createBook = async (req, res) => {
+    try {
+        const { title, description, image, release_year, price, total_page, category_id } = req.body;
+        const newBook = await Books.create({
+            title,
+            description,
+            image_url: image,
+            release_year,
+            price,
+            total_page,
+            category_id,
+        });
+        res.status(201).json({ msg: "Book Added", data: newBook });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
