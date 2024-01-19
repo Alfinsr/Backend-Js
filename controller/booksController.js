@@ -118,51 +118,6 @@ export const getBookById = async (req, res) => {
     }
 };
 
-// export const getFilteredBooks = async (req, res) => {
-//     const { title, minYear, maxYear, minPage, maxPage, sortByTitle } = req.query;
-   
-//     const category = req.params.id;
-//     let response;
-   
-   
-//     try {
-//       if (title) {
-//         response = await Books.findAll({
-//           where: {
-//             category_id: category,
-//             title: { [Sequelize.Op.like]: `%${title}%` },
-//             release_year: {
-//               [Sequelize.Op.between]: [minYear || 0, maxYear || 99999],
-//             },
-//             total_page: {
-//               [Sequelize.Op.between]: [minPage || 0, maxPage || 99999],
-//             },
-//           },
-//           order: sortByTitle,
-//         });
-//       } else {
-//         response = await Books.findAll({
-//           where: {
-//             category_id: category,
-//             release_year: {
-//               [Sequelize.Op.between]: [minYear || 0, maxYear || 99999],
-//             },
-//             total_page: {
-//               [Sequelize.Op.between]: [minPage || 0, maxPage || 99999],
-//             },
-//           },
-   
-//           order: sortByTitle,
-//         });
-//       }
-   
-//       res.status(200).json(response);
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   };
-
-
 
 export const getFilteredBooks = async (req, res) => {
     try {
