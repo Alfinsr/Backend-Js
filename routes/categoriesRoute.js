@@ -3,7 +3,7 @@ import { getCategories,
     createCategorie,
     updateCategorie,
     deleteCategorie,
-    getCategorieById
+    getCategorieById,
  } from "../controller/categoriesController.js"
  import { getFilteredBooks } from "../controller/booksController.js"
 
